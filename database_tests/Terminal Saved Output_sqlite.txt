@@ -1,0 +1,325 @@
+Last login: Sun Jul 19 21:13:56 on console
+khouripa@localadmins-MBP ~ % cd Documents/my_php
+khouripa@localadmins-MBP my_php % ls
+actions		include		link_data	test_one
+date		index.html	moving_location	test_two
+holder		isset		single_form
+khouripa@localadmins-MBP my_php % pwd
+/Users/khouripa/Documents/my_php
+khouripa@localadmins-MBP my_php % mkdir database_tests
+khouripa@localadmins-MBP my_php % ls
+actions		holder		isset		single_form
+database_tests	include		link_data	test_one
+date		index.html	moving_location	test_two
+khouripa@localadmins-MBP my_php % sqlite3 test_one.db
+SQLite version 3.28.0 2019-04-15 14:49:49
+Enter ".help" for usage hints.
+sqlite> .database
+main: /Users/khouripa/Documents/my_php/test_one.db
+sqlite> test_ne.db
+   ...> test_one.db
+   ...> clear
+   ...> 
+   ...> 
+   ...> .database
+   ...> .help
+   ...> :q
+   ...> .help;
+Error: near "test_ne": syntax error
+sqlite> test_one.db
+   ...> ;
+Error: near "test_one": syntax error
+sqlite> .tables
+sqlite> ;
+sqlite> .table
+sqlite> ;
+sqlite> .database
+main: /Users/khouripa/Documents/my_php/test_one.db
+sqlite> .tables
+sqlite> ;
+sqlite> sqlite3 test_one.db
+   ...> .tables
+   ...> ;
+Error: near "sqlite3": syntax error
+sqlite> .exit
+khouripa@localadmins-MBP my_php % sqlite3 test_one.db
+SQLite version 3.28.0 2019-04-15 14:49:49
+Enter ".help" for usage hints.
+sqlite> .tables
+sqlite> .databases
+main: /Users/khouripa/Documents/my_php/test_one.db
+sqlite> .indexes
+sqlite> pwd
+   ...> ;
+Error: near "pwd": syntax error
+sqlite> .exit
+khouripa@localadmins-MBP my_php % sqlite
+zsh: command not found: sqlite
+khouripa@localadmins-MBP my_php % sqlite3
+SQLite version 3.28.0 2019-04-15 14:49:49
+Enter ".help" for usage hints.
+Connected to a transient in-memory database.
+Use ".open FILENAME" to reopen on a persistent database.
+sqlite> .open test_one.db
+sqlite> .tables
+sqlite> .help
+.auth ON|OFF             Show authorizer callbacks
+.backup ?DB? FILE        Backup DB (default "main") to FILE
+.bail on|off             Stop after hitting an error.  Default OFF
+.binary on|off           Turn binary output on or off.  Default OFF
+.cd DIRECTORY            Change the working directory to DIRECTORY
+.changes on|off          Show number of rows changed by SQL
+.check GLOB              Fail if output since .testcase does not match
+.clone NEWDB             Clone data into NEWDB from the existing database
+.databases               List names and files of attached databases
+.dbconfig ?op? ?val?     List or change sqlite3_db_config() options
+.dbinfo ?DB?             Show status information about the database
+.dump ?TABLE? ...        Render all database content as SQL
+.echo on|off             Turn command echo on or off
+.eqp on|off|full|...     Enable or disable automatic EXPLAIN QUERY PLAN
+.excel                   Display the output of next command in a spreadsheet
+.exit ?CODE?             Exit this program with return-code CODE
+.expert                  EXPERIMENTAL. Suggest indexes for specified queries
+.fullschema ?--indent?   Show schema and the content of sqlite_stat tables
+.headers on|off          Turn display of headers on or off
+.help ?-all? ?PATTERN?   Show help text for PATTERN
+.import FILE TABLE       Import data from FILE into TABLE
+.imposter INDEX TABLE    Create imposter table TABLE on index INDEX
+.indexes ?TABLE?         Show names of indexes
+.limit ?LIMIT? ?VAL?     Display or change the value of an SQLITE_LIMIT
+.lint OPTIONS            Report potential schema issues.
+.log FILE|off            Turn logging on or off.  FILE can be stderr/stdout
+.mode MODE ?TABLE?       Set output mode
+.nullvalue STRING        Use STRING in place of NULL values
+.once (-e|-x|FILE)       Output for the next SQL command only to FILE
+.open ?OPTIONS? ?FILE?   Close existing database and reopen FILE
+.output ?FILE?           Send output to FILE or stdout if FILE is omitted
+.parameter CMD ...       Manage SQL parameter bindings
+.print STRING...         Print literal STRING
+.progress N              Invoke progress handler after every N opcodes
+.prompt MAIN CONTINUE    Replace the standard prompts
+.quit                    Exit this program
+.read FILE               Read input from FILE
+.restore ?DB? FILE       Restore content of DB (default "main") from FILE
+.save FILE               Write in-memory database into FILE
+.scanstats on|off        Turn sqlite3_stmt_scanstatus() metrics on or off
+.schema ?PATTERN?        Show the CREATE statements matching PATTERN
+.selftest ?OPTIONS?      Run tests defined in the SELFTEST table
+.separator COL ?ROW?     Change the column and row separators
+.session ?NAME? CMD ...  Create or control sessions
+.sha3sum ...             Compute a SHA3 hash of database content
+.shell CMD ARGS...       Run CMD ARGS... in a system shell
+.show                    Show the current values for various settings
+.stats ?on|off?          Show stats or turn stats on or off
+.system CMD ARGS...      Run CMD ARGS... in a system shell
+.tables ?TABLE?          List names of tables matching LIKE pattern TABLE
+.testcase NAME           Begin redirecting output to 'testcase-out.txt'
+.timeout MS              Try opening locked tables for MS milliseconds
+.timer on|off            Turn SQL timer on or off
+.trace ?OPTIONS?         Output each SQL statement as it is run
+.vfsinfo ?AUX?           Information about the top-level VFS
+.vfslist                 List all available VFSes
+.vfsname ?AUX?           Print the name of the VFS stack
+.width NUM1 NUM2 ...     Set column widths for "column" mode
+sqlite> .databases
+main: /Users/khouripa/Documents/my_php/test_one.db
+sqlite> create table contacts(
+   ...> contact_id integer primary key,
+   ...> first_name text not null,
+   ...> last_name text not null,
+   ...> email text not null unique,
+   ...> phone text not null unique
+   ...> );
+sqlite> .tables
+contacts
+sqlite> create table if not exists fruit(
+   ...> id integer,
+   ...> name text,
+   ...> color text
+   ...> );
+sqlite> .tables
+contacts  fruit   
+sqlite> explain fruit
+   ...> ;
+Error: near "fruit": syntax error
+sqlite> .schema contacts
+CREATE TABLE contacts(
+contact_id integer primary key,
+first_name text not null,
+last_name text not null,
+email text not null unique,
+phone text not null unique
+);
+sqlite> .fullschema
+CREATE TABLE contacts(
+contact_id integer primary key,
+first_name text not null,
+last_name text not null,
+email text not null unique,
+phone text not null unique
+);
+CREATE TABLE fruit(
+id integer,
+name text,
+color text
+);
+/* No STAT tables available */
+sqlite> .indexes
+sqlite_autoindex_contacts_1  sqlite_autoindex_contacts_2
+sqlite> select datetime('now');
+2020-07-19 09:36:29
+sqlite> create table if not exists prints(
+   ...> id integer primary key,
+   ...> name text,
+   ...> price real
+   ...> );
+sqlite> .tables
+contacts  fruit     prints  
+sqlite> insert into prints(name, price)
+   ...> values("Merry Structure", 29.99),
+   ...> ("Heavy Red", 24.99),
+   ...> ("Black Lines", 45.99);
+sqlite> .tables
+contacts  fruit     prints  
+sqlite> .indexes
+sqlite_autoindex_contacts_1  sqlite_autoindex_contacts_2
+sqlite> select * from prints
+   ...> ;
+1|Merry Structure|29.99
+2|Heavy Red|24.99
+3|Black Lines|45.99
+sqlite> create table if not exists towels(
+   ...> id integer primary key,
+   ...> name text,
+   ...> color text,
+   ...> price real
+   ...> );
+sqlite> .tables
+contacts  fruit     prints    towels  
+sqlite> insert into towels(name, color, price)
+   ...> values("Dolphin", "Blue", 9.99),
+   ...> ("Wine", "Maroon", 12.99),
+   ...> ("Harvest", "Beige", 7.99),
+   ...> ("Daisy", "Lilac", 8.99),
+   ...> ("Starburst", "Yellow", 10.99);
+sqlite> select * from towels;
+1|Dolphin|Blue|9.99
+2|Wine|Maroon|12.99
+3|Harvest|Beige|7.99
+4|Daisy|Lilac|8.99
+5|Starburst|Yellow|10.99
+sqlite> .fullschema
+CREATE TABLE contacts(
+contact_id integer primary key,
+first_name text not null,
+last_name text not null,
+email text not null unique,
+phone text not null unique
+);
+CREATE TABLE fruit(
+id integer,
+name text,
+color text
+);
+CREATE TABLE prints(
+id integer primary key,
+name text,
+price real
+);
+CREATE TABLE towels(
+id integer primary key,
+name text,
+color text,
+price real
+);
+/* No STAT tables available */
+sqlite> update towels set color="White";
+sqlite> select * from towels;
+1|Dolphin|White|9.99
+2|Wine|White|12.99
+3|Harvest|White|7.99
+4|Daisy|White|8.99
+5|Starburst|White|10.99
+sqlite> create table if not exists tiles(
+   ...> id integer primary key,
+   ...> pattern text,
+   ...> color text,
+   ...> price real
+   ...> );
+sqlite> .tables
+contacts  fruit     prints    tiles     towels  
+sqlite> insert into tiles(pattern, color, price)
+   ...> values("Spring", "Green", 9.99),
+   ...> ("Summer", "Yellow", 12.99),
+   ...> ("Autumn", "Brown", 9.99),
+   ...> ("Winter", "Blue", 8.99);
+sqlite> select * from tiles;
+1|Spring|Green|9.99
+2|Summer|Yellow|12.99
+3|Autumn|Brown|9.99
+4|Winter|Blue|8.99
+sqlite> update tiles set pattern="Fall" where pattern="Autumn";
+sqlite> select * from tiles;
+1|Spring|Green|9.99
+2|Summer|Yellow|12.99
+3|Fall|Brown|9.99
+4|Winter|Blue|8.99
+sqlite> update tiles set price=11.99 where id=4;
+sqlite> select 8 from tiles where id=4;
+8
+sqlite> select * from tiles where id=4;
+4|Winter|Blue|11.99
+sqlite> .output tiles.txt
+sqlite> select * from tiles
+   ...> ;
+sqlite> .save
+missing FILENAME argument on .backup
+sqlite> test_one.db .save
+   ...> ;
+Error: near "test_one": syntax error
+sqlite> .save test_one.db
+Error: database is locked
+sqlite> .databases
+sqlite> .database
+sqlite> .tables
+sqlite> .exit
+khouripa@localadmins-MBP my_php % sqlite3 .open test_one.db
+Error: near "test_one": syntax error
+khouripa@localadmins-MBP my_php % sqlite3
+SQLite version 3.28.0 2019-04-15 14:49:49
+Enter ".help" for usage hints.
+Connected to a transient in-memory database.
+Use ".open FILENAME" to reopen on a persistent database.
+sqlite> .open test_one.db
+sqlite> .tables
+contacts  fruit     prints    tiles     towels  
+sqlite> .exit
+khouripa@localadmins-MBP my_php % pwd
+/Users/khouripa/Documents/my_php
+khouripa@localadmins-MBP my_php % say "Hello"
+khouripa@localadmins-MBP my_php % clear
+
+khouripa@localadmins-MBP my_php % history
+  246  php -S localhost:8000
+  247  clear
+  248  cd Documents/my_php
+  249  ls
+  250  pwd
+  251  mkdir database_tests
+  252  ls
+  253  sqlite3 test_one.db
+  254  sqlite3 test_one.db
+  255  sqlite
+  256  sqlite3
+  257  sqlite3 .open test_one.db
+  258  sqlite3
+  259  pwd
+  260  say "Hello"
+  261  clear
+khouripa@localadmins-MBP my_php % 
+
+
+
+
+
+

@@ -1,0 +1,44 @@
+Last login: Mon Jul 20 16:54:51 on console
+khouripa@localadmins-MBP ~ % cd Documents/my_php
+khouripa@localadmins-MBP my_php % ls
+actions		holder		isset		single_form
+database_tests	include		link_data	test_one
+date		index.html	moving_location	test_two
+khouripa@localadmins-MBP my_php % cd database_tests
+khouripa@localadmins-MBP database_tests % ls
+Terminal Saved Output_sqlite.txt	tiles.txt
+test_one.db
+khouripa@localadmins-MBP database_tests % SQLite3 test_two.sqlite
+SQLite version 3.28.0 2019-04-15 14:49:49
+Enter ".help" for usage hints.
+sqlite> .databases
+main: /Users/khouripa/Documents/my_php/database_tests/test_two.sqlite
+sqlite> create table if not exists pens(
+   ...> id integer primary key,
+   ...> maker text,
+   ...> model text,
+   ...> price real
+   ...> );
+sqlite> .tables
+pens
+sqlite> insert into pens(maker, model, price)
+   ...> values("Montegrappa", "Silver Dragon", 950),
+   ...> ("Paul Rossi", "Eqyptian Lady", 650),
+   ...> ("Michael Perchin", "Red Cross", 450),
+   ...> ("Bexley", "Poseidon Magnum", 350);
+sqlite> select * from pens;
+1|Montegrappa|Silver Dragon|950.0
+2|Paul Rossi|Eqyptian Lady|650.0
+3|Michael Perchin|Red Cross|450.0
+4|Bexley|Poseidon Magnum|350.0
+sqlite> .exit
+khouripa@localadmins-MBP database_tests % SQLite3
+SQLite version 3.28.0 2019-04-15 14:49:49
+Enter ".help" for usage hints.
+Connected to a transient in-memory database.
+Use ".open FILENAME" to reopen on a persistent database.
+sqlite> .open test_two.sqlite
+sqlite> .tables
+pens
+sqlite> .exit
+khouripa@localadmins-MBP database_tests % 

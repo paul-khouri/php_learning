@@ -1,0 +1,97 @@
+Last login: Fri Jul 17 20:38:42 on ttys000
+khouripa@localadmins-MBP ~ % php -a
+Interactive shell
+
+php > echo "Hello World"
+php > echo "Hello World";
+
+Parse error: syntax error, unexpected 'echo' (T_ECHO), expecting ',' or ';' in php shell code on line 2
+php > 
+khouripa@localadmins-MBP ~ % php -a
+Interactive shell
+
+php > echo "Hello World";
+Hello World
+php > exit
+khouripa@localadmins-MBP ~ % cd
+khouripa@localadmins-MBP ~ % ls
+Applications			Library
+Creative Cloud Files		Movies
+Desktop				Music
+Documents			Pictures
+Downloads			Public
+Google Drive File Stream	echo
+khouripa@localadmins-MBP ~ % cd Documents
+khouripa@localadmins-MBP Documents % ls
+11Processes_Planning
+12Dbases
+91259 - 2016 - Glamping Tents (revised 2017).docx
+Adobe
+DTech
+Exam Requests 2020_Kh.xlsx
+Fetch_APIS
+IMG_0142.psd
+Project_tables
+Python_projects
+Question1_Bivariate_2018_Schol.pdf
+Question1_Bivariate_2018_Schol_sol.pdf
+WebMaterial_LHI
+all_questions_current_with_sols.pdf
+flaxclearing.png
+fruitbowl_from_github
+health_glance-2015-59-en.pdf
+my_php
+node_folder
+p5assembly
+paul-khouri.github.io
+simulation
+web_links
+year11_class_web.github.io
+year9_pi.png
+khouripa@localadmins-MBP Documents % cd my_php
+khouripa@localadmins-MBP my_php % php -S localhost:8000
+PHP 7.3.11 Development Server started at Fri Jul 17 20:45:44 2020
+Listening on http://localhost:8000
+Document root is /Users/khouripa/Documents/my_php
+Press Ctrl-C to quit.
+[Fri Jul 17 20:45:56 2020] [::1]:50278 [200]: /
+[Fri Jul 17 20:47:04 2020] [::1]:50305 [200]: /
+[Fri Jul 17 20:48:18 2020] [::1]:50372 [200]: /
+[Fri Jul 17 20:50:08 2020] [::1]:50429 [200]: /
+[Fri Jul 17 20:50:30 2020] [::1]:50430 [200]: /
+[Fri Jul 17 20:52:12 2020] [::1]:50466 [200]: /
+[Fri Jul 17 20:56:09 2020] [::1]:50547 [200]: /
+[Fri Jul 17 21:06:12 2020] [::1]:51049 [200]: /
+[Fri Jul 17 21:07:39 2020] [::1]:51054 [200]: /
+[Fri Jul 17 21:07:55 2020] [::1]:51055 [200]: /
+[Fri Jul 17 21:11:26 2020] [::1]:51179 [200]: /
+[Fri Jul 17 21:11:51 2020] [::1]:51180 [200]: /
+[Fri Jul 17 21:13:27 2020] [::1]:51199 [200]: /
+exit
+^C%                                                                             khouripa@localadmins-MBP my_php % sqlite3
+SQLite version 3.28.0 2019-04-15 14:49:49
+Enter ".help" for usage hints.
+Connected to a transient in-memory database.
+Use ".open FILENAME" to reopen on a persistent database.
+sqlite> create database if not exists site_db
+   ...> .save site_db
+   ...> .help
+   ...> .open site_db
+   ...> show databases
+   ...> ^C
+
+   ...> exit
+   ...> ^D
+Error: near "database": syntax error
+khouripa@localadmins-MBP my_php % sqlite3
+SQLite version 3.28.0 2019-04-15 14:49:49
+Enter ".help" for usage hints.
+Connected to a transient in-memory database.
+Use ".open FILENAME" to reopen on a persistent database.
+sqlite> ^D
+khouripa@localadmins-MBP my_php % sqlite3 site_db
+SQLite version 3.28.0 2019-04-15 14:49:49
+Enter ".help" for usage hints.
+sqlite> .save site_db.db
+sqlite> ^D
+khouripa@localadmins-MBP my_php %     
