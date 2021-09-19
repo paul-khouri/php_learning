@@ -1,0 +1,54 @@
+Last login: Fri Jul 24 20:49:39 on console
+khouripa@localadmins-MBP ~ % cd Documents/my_php/login
+khouripa@localadmins-MBP login % ls
+khouripa@localadmins-MBP login % touch log_in_db.sqlite
+khouripa@localadmins-MBP login % ls
+log_in_db.sqlite
+khouripa@localadmins-MBP login % SQLite3
+SQLite version 3.28.0 2019-04-15 14:49:49
+Enter ".help" for usage hints.
+Connected to a transient in-memory database.
+Use ".open FILENAME" to reopen on a persistent database.
+sqlite> SQLite
+   ...> .databases
+   ...> ;
+Error: near "SQLite": syntax error
+sqlite> .database
+main: 
+sqlite> .open log_in_db.sqlite
+sqlite> create table if not exists users(
+   ...> id integer primary key,
+   ...> first_name text,
+   ...> last_name text,
+   ...> email text,
+   ...> pass text,
+   ...> reg_date text
+   ...> );
+sqlite> .tables
+users
+sqlite> insert into users(first_name, last_name, email, pass, reg_date) 
+   ...> values("Mike", "McGrath", "mike@gmail.com", "123", select datetime('now'));
+Error: near "select": syntax error
+sqlite> insert into users(first_name, last_name, email, pass, reg_date)            ...>    ...> values("Mike", "McGrath", "mike@gmail.com", "123", datetime('now'));
+Error: near ".": syntax error
+sqlite> insert into users(first_name, last_name, email, pass, reg_date) 
+   ...>    ...> values("Mike", "McGrath", "mike@gmail.com", "123", "20/07/90");
+Error: near ".": syntax error
+sqlite> .tables
+users
+sqlite> insert into users(first_name, last_name, email, pass, reg_date) values("Mike", "McGrath", "mike@gmail.com", "123", "20/07/67");
+sqlite> insert into users(first_name, last_name, email, pass, reg_date) values("Mike", "McGrath", "mike@gmail.comqlite> insert into users(first_name, last_name, email, pass, reg_date) values("Mike", "McGrath", "mike@gmail.com", "123", select datetime('now'));
+Error: near "select": syntax error
+sqlite> insert into users(first_name, last_name, email, pass, reg_date) values("Mike", "McGrath", "mike@gmail.com", "123",  datetime('now'));
+sqlite> delete from users where id=1;
+Error: database is locked
+sqlite> delete from users where id=1;
+sqlite> select * from users;
+2|Mike|McGrath|mike@gmail.com|123|2020-07-24 09:05:04
+sqlite> exit()
+   ...> ;
+Error: near "exit": syntax error
+sqlite> ^D
+khouripa@localadmins-MBP login % ls
+connect_db.php		includes		log_in_db.sqlite	register.php
+khouripa@localadmins-MBP login % 
