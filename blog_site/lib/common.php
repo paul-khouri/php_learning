@@ -57,11 +57,48 @@ function htmlEscape($html){
  */
 function convertSQliteDate($sqlDate){
     /* @var $date DateTime */
-    $date = DateTime::createFromFormat("Y-m-d",$sqlDate);
+    $date = DateTime::createFromFormat("Y-m-d H:i:s",$sqlDate);
 
-    return $date -> format('d M Y');
+    return $date -> format('d M Y, H:i');
 
 }
 
+/**
+ * Returns specified number of comments for each post
+ * 
+ * @param integer $postId
+ * @return integer
+ */
+function countCommentsForPost($postId){
+    $pdo = getPDO();
+    $sql = "
+    select count(*) c from comment
+    where post_id = :post_id
+    ";
+    $stmt = $pdo -> prepare($sql);
+    $stmt ->execute(
+        array('post_id' => $postId, )
+    );
+
+    return (int) $stmt -> fetchColumn();
+
+}
+
+function getCommentsForPost($postId){
+
+    $pdo = getPDO();
+    $sql = "
+    select id, name, text, created_at, website
+    from comment 
+    where post_id = :post_id
+    ";
+    $stmt = $pdo -> prepare($sql);
+    $stmt ->execute(
+        array('post_id' => $postId, )
+    );
+
+    return $stmt -> fetchAll(PDO::FETCH_ASSOC);
+
+}
 
 // no closing tag

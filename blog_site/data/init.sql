@@ -20,7 +20,7 @@ values(
     
     It is split into paragraphs.",
     1,
-    date('now', '-2 months')
+    datetime('now', '-2 months', '+200 minutes' , '-59 seconds')
 );
 
 insert into post(title, body, user_id, created_at)
@@ -30,7 +30,7 @@ values(
     
     It is split into paragraphs.",
     1,
-    date('now', '-1 months')
+    datetime('now', '-1 months', '+680 minutes', '+28 seconds')
 );
 
 insert into post(title, body, user_id, created_at)
@@ -40,7 +40,7 @@ values(
     
     It is split into paragraphs.",
     1,
-    date('now', '-19 days')
+    datetime('now', '-19 days', '1200 minutes', '+10 seconds')
 );
 drop table if exists comment;
 
@@ -56,7 +56,7 @@ create table comment(
 insert into comment(post_id, created_at, name, website, text)
 values(
     1,
-    date('now', '-10 days'),
+    datetime('now', '-10 days', '+820 minutes', '+0 seconds'),
     'Jimmy',
     'http://google.com',
     "This is Jimmy's contribution"
@@ -65,7 +65,7 @@ values(
 insert into comment(post_id, created_at, name, website, text)
 values(
     1,
-    date('now', '-10 days'),
+    datetime('now', '-10 days', '+900 minutes', '+1 seconds'),
     'Jane',
     'http://msn.com',
     "This is Jane's contribution"
@@ -74,7 +74,7 @@ values(
 insert into comment(post_id, created_at, name, website, text)
 values(
     1,
-    date('now', '-9 days'),
+    datetime('now', '-9 days', '+50 minutes', '+2 seconds'),
     'Johnny',
     'http://yahoo.com',
     "This is Johnny's contribution"
@@ -83,7 +83,7 @@ values(
 insert into comment(post_id, created_at, name, website, text)
 values(
     1,
-    date('now', '-8 days'),
+    datetime('now', '-8 days', '+350 minutes', '+3 seconds'),
     'Alice',
     'http://bing.com',
     "This is Alices's contribution"

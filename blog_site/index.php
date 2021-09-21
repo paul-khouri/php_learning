@@ -38,6 +38,7 @@ if($stmt === false){
       </h2>
       <div>
         <?php echo convertSQliteDate($row['created_at']) ?>
+        ( <?php  echo countCommentsForPost($row['id'])  ?> comments )
       </div>
       <p>
         <?php echo htmlEscape($row['body'] )?>
