@@ -19,6 +19,11 @@ $row = getPostRow($pdo, $postId);
 //swap carriage returns for paragraph breaks
 $bodyText =  htmlEscape($row['body'] ) ;
 $paraText = str_replace("\n", "</p><p>", $bodyText);
+$error = "Row found";
+if(!$row){
+  $error= "No row found";
+  redirectAndExit('index.php?not-found=1');
+}
 ?>
 
 <!doctype html>
@@ -34,6 +39,7 @@ $paraText = str_replace("\n", "</p><p>", $bodyText);
 
 <body>
   <?php require 'templates/title.php' ?>
+  <h2><?php echo $error ?></h2>
       <h2><?php echo $postId ?></h2>
       <h2>
         <?php echo htmlEscape($row['title']) ?>

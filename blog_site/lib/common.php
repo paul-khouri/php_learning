@@ -63,6 +63,19 @@ function convertSQliteDate($sqlDate){
 
 }
 
+function redirectAndExit($script){
+    // get domain relative URL and extract folder
+    $relativeUrl = $_SERVER['PHP_SELF'];
+    $urlFolder = substr($relativeUrl, 0,strrpos($relativeUrl, '/') + 1);
+
+    // redirect to full URL
+    $host = $_SERVER['HTTP_HOST'];
+    $fullURL = 'http://' . $host . $urlFolder . $script ;
+    $redirect = 'Location: ' . $fullURL;
+    header($redirect );
+    exit();
+}
+
 /**
  * Returns specified number of comments for each post
  * 
@@ -84,6 +97,12 @@ function countCommentsForPost($postId){
 
 }
 
+/**
+ * Returns all comments for a post
+ * 
+ * @param integer $postId
+ * @return array
+ */
 function getCommentsForPost($postId){
 
     $pdo = getPDO();

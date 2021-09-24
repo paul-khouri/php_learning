@@ -15,6 +15,14 @@ if($stmt === false){
     throw new Exception("there was a problem running this query");
   }
 }
+
+$notFound = isset($_GET['not-found']);
+if ($notFound){
+  $notFoundVar = $notFound;
+}
+else{
+  $notFoundVar = "not not-found";
+}
 ?>
 
 
@@ -32,6 +40,10 @@ if($stmt === false){
 
 <body>
     <?php require 'templates/title.php' ?>
+    <h2>Not found variable : <?php echo $notFoundVar ?></h2>
+    <?php if ($notFound): ?>
+      <div style="border: 1px solid #ff6666; padding: 6px;"> Error: cannot find requested blog post </div>
+      <?php endif ?>
     <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
       <h2>
         <?php echo htmlEscape($row['title']) ?>
@@ -45,6 +57,10 @@ if($stmt === false){
       </p>
       <p><a href="view-post.php?post_id=<?php echo $row['id'] ?>">Read More ...</a></p>
     <?php endwhile ?>
+<hr/>
+<p><a href="view-post.php?post_id=7">Test for request cannot be found</a></p>
+
+
 
 
 </body>
