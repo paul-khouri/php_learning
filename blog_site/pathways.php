@@ -25,7 +25,14 @@ require 'templates/boilerplate.php' ?>
     echo 'Redirect location: ' . $redirect . '<br/>';
     echo 'URL folder: ' . $urlFolder . '<br/>';
     echo 'Full URL: ' . $fullURL . '<br/>';
+    $testarray=array( 'name' => 'Paul', 'age' => 99, 'comment' => "here I am");
+    foreach($testarray as $x => $x_value){
+        echo "Key: " . $x . ", Value: " . $x_value;
+        echo "<br/>";
+    }
     ?>
+
+
 
 </body>
 </html>

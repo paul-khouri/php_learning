@@ -1,0 +1,168 @@
+Last login: Sat Sep 25 16:43:02 on console
+khouripa@localadmins-MBP ~ % cd Documents/my_php_blog_site
+cd: no such file or directory: Documents/my_php_blog_site
+khouripa@localadmins-MBP ~ % cd Documents/my_php/blog_site 
+khouripa@localadmins-MBP blog_site % ls
+data		index_1.php	install-2.php	pathways.php	view-post-2.php
+index-2.php	info.php	install.php	templates	view-post.php
+index.php	install-1.php	lib		view-post-1.php
+khouripa@localadmins-MBP blog_site % php -S localhost:9000
+PHP 7.3.29-to-be-removed-in-future-macOS Development Server started at Sat Sep 25 16:44:49 2021
+Listening on http://localhost:9000
+Document root is /Users/khouripa/Documents/my_php/blog_site
+Press Ctrl-C to quit.
+[Sat Sep 25 16:45:04 2021] [::1]:49505 [200]: /
+[Sat Sep 25 16:45:11 2021] [::1]:49515 [302]: /view-post.php?post_id=7
+[Sat Sep 25 16:45:11 2021] [::1]:49516 [200]: /index.php?not-found=1
+[Sat Sep 25 16:45:13 2021] [::1]:49517 [200]: /index.php
+[Sat Sep 25 16:45:17 2021] [::1]:49518 [200]: /view-post.php?post_id=1
+[Sat Sep 25 16:50:12 2021] [::1]:49588 [200]: /view-post.php?post_id=1
+[Sat Sep 25 16:52:07 2021] [::1]:49594 [200]: /view-post.php?post_id=1
+[Sat Sep 25 16:52:10 2021] [::1]:49595 [200]: /view-post.php?post_id=1
+[Sat Sep 25 16:52:22 2021] [::1]:49597 [200]: /view-post.php?post_id=1
+[Sat Sep 25 16:52:41 2021] [::1]:49603 [200]: /view-post.php?post_id=1
+[Sat Sep 25 16:52:43 2021] [::1]:49604 [200]: /index.php
+[Sat Sep 25 16:52:46 2021] [::1]:49605 [200]: /view-post.php?post_id=1
+[Sat Sep 25 16:52:49 2021] [::1]:49606 [200]: /view-post.php?post_id=1
+[Sat Sep 25 16:52:59 2021] [::1]:49608 [200]: /view-post.php?post_id=1
+[Sat Sep 25 16:53:49 2021] [::1]:49613 [200]: /index.php
+[Sat Sep 25 16:53:52 2021] [::1]:49614 [200]: /view-post.php?post_id=1
+[Sat Sep 25 16:53:56 2021] [::1]:49616 [200]: /view-post.php?post_id=1
+[Sat Sep 25 16:57:35 2021] [::1]:49639 [200]: /index.php
+[Sat Sep 25 16:57:37 2021] [::1]:49640 [200]: /view-post.php?post_id=1
+[Sat Sep 25 16:57:40 2021] [::1]:49641 [200]: /view-post.php?post_id=1
+[Sat Sep 25 17:08:57 2021] [::1]:49674 [200]: /index.php
+[Sat Sep 25 17:09:00 2021] [::1]:49675 [200]: /view-post.php?post_id=2
+[Sat Sep 25 17:09:04 2021] [::1]:49676 [200]: /view-post.php?post_id=2
+[Sat Sep 25 17:11:16 2021] [::1]:49683 [200]: /index.php
+[Sat Sep 25 17:11:18 2021] [::1]:49684 [200]: /view-post.php?post_id=3
+[Sat Sep 25 17:11:55 2021] [::1]:49686 [200]: /index.php
+[Sat Sep 25 17:11:57 2021] [::1]:49687 [200]: /view-post.php?post_id=3
+[Sat Sep 25 17:13:14 2021] [::1]:49696 [200]: /index.php
+[Sat Sep 25 17:13:16 2021] [::1]:49697 [200]: /view-post.php?post_id=3
+[Sat Sep 25 17:13:18 2021] [::1]:49698 [200]: /view-post.php?post_id=3
+[Sat Sep 25 17:13:23 2021] [::1]:49699 [200]: /view-post.php?post_id=3
+[Sat Sep 25 17:15:01 2021] [::1]:49704 [200]: /view-post.php?post_id=3
+[Sat Sep 25 17:15:06 2021] [::1]:49706 [200]: /view-post.php?post_id=3
+[Sat Sep 25 17:17:38 2021] [::1]:49712 [200]: /index.php
+[Sat Sep 25 17:17:40 2021] [::1]:49713 [200]: /view-post.php?post_id=3
+[Sat Sep 25 17:17:42 2021] [::1]:49715 [302]: /view-post.php?post_id=3
+[Sat Sep 25 17:17:42 2021] [::1]:49716 [200]: /view-post.php?post_id=3
+[Sat Sep 25 17:17:50 2021] [::1]:49717 [302]: /view-post.php?post_id=3
+[Sat Sep 25 17:17:50 2021] [::1]:49718 [200]: /view-post.php?post_id=3
+[Sat Sep 25 17:17:54 2021] [::1]:49719 [200]: /view-post.php?post_id=3
+[Sat Sep 25 17:35:33 2021] [::1]:49774 [200]: /index.php
+[Sat Sep 25 17:35:34 2021] [::1]:49775 [200]: /view-post.php?post_id=3
+[Sat Sep 25 17:35:37 2021] [::1]:49776 [200]: /view-post.php?post_id=3
+[Sat Sep 25 17:42:01 2021] [::1]:49969 [200]: /view-post.php?post_id=3
+[Sat Sep 25 17:42:05 2021] [::1]:49970 [200]: /index.php
+[Sat Sep 25 17:42:08 2021] [::1]:49971 [200]: /view-post.php?post_id=1
+[Sat Sep 25 17:42:11 2021] [::1]:49972 [200]: /view-post.php?post_id=1
+[Sat Sep 25 17:45:50 2021] [::1]:49999 [200]: /index.php
+[Sat Sep 25 17:45:53 2021] [::1]:50000 [200]: /view-post.php?post_id=2
+[Sat Sep 25 17:45:55 2021] [::1]:50002 [200]: /view-post.php?post_id=2
+[Sat Sep 25 18:02:01 2021] [::1]:50047 [200]: /index.php
+[Sat Sep 25 18:02:03 2021] [::1]:50048 [200]: /view-post.php?post_id=2
+[Sat Sep 25 18:02:05 2021] [::1]:50049 [200]: /view-post.php?post_id=2
+[Sat Sep 25 18:02:14 2021] [::1]:50050 [200]: /view-post.php?post_id=2
+[Sat Sep 25 18:02:21 2021] [::1]:50051 [200]: /index.php
+[Sat Sep 25 18:02:23 2021] [::1]:50052 [200]: /view-post.php?post_id=2
+[Sat Sep 25 18:02:28 2021] [::1]:50056 [200]: /view-post.php?post_id=2
+[Sat Sep 25 18:03:19 2021] [::1]:50058 [200]: /index.php
+[Sat Sep 25 18:03:21 2021] [::1]:50059 [200]: /view-post.php?post_id=3
+[Sat Sep 25 18:03:26 2021] [::1]:50060 [200]: /view-post.php?post_id=3
+[Sat Sep 25 18:03:29 2021] [::1]:50061 [200]: /view-post.php?post_id=3
+[Sat Sep 25 18:04:12 2021] [::1]:50064 [200]: /index.php
+[Sat Sep 25 18:04:14 2021] [::1]:50065 [200]: /view-post.php?post_id=2
+[Sat Sep 25 18:04:16 2021] [::1]:50066 [200]: /view-post.php?post_id=2 - Uncaught Exception: Cannot prepare statement to insert comment in /Users/khouripa/Documents/my_php/blog_site/view-post.php:56
+Stack trace:
+#0 /Users/khouripa/Documents/my_php/blog_site/view-post.php(80): addCommentToPost(Object(PDO), 1, Array)
+#1 {main}
+  thrown in /Users/khouripa/Documents/my_php/blog_site/view-post.php on line 56
+[Sat Sep 25 18:04:29 2021] [::1]:50067 [200]: /index.php
+[Sat Sep 25 18:04:31 2021] [::1]:50068 [200]: /view-post.php?post_id=2
+[Sat Sep 25 18:04:33 2021] [::1]:50069 [200]: /view-post.php?post_id=2
+[Sat Sep 25 18:05:35 2021] [::1]:50078 [200]: /index.php
+[Sat Sep 25 18:05:37 2021] [::1]:50079 [200]: /view-post.php?post_id=3
+[Sat Sep 25 18:05:39 2021] [::1]:50080 [200]: /view-post.php?post_id=3
+[Sat Sep 25 18:06:21 2021] [::1]:50081 [200]: /index.php
+[Sat Sep 25 18:06:23 2021] [::1]:50082 [200]: /view-post.php?post_id=3
+[Sat Sep 25 18:06:24 2021] [::1]:50083 [200]: /view-post.php?post_id=3
+[Sat Sep 25 18:11:35 2021] [::1]:50098 [200]: /index.php
+[Sat Sep 25 18:11:37 2021] [::1]:50099 [200]: /view-post.php?post_id=2
+[Sat Sep 25 18:11:38 2021] [::1]:50100 [200]: /view-post.php?post_id=2
+[Sat Sep 25 18:12:02 2021] [::1]:50101 [200]: /index.php
+[Sat Sep 25 18:12:03 2021] [::1]:50102 [200]: /view-post.php?post_id=3
+[Sat Sep 25 18:12:05 2021] [::1]:50103 [302]: /view-post.php?post_id=3
+[Sat Sep 25 18:12:05 2021] [::1]:50104 [200]: /view-post.php?post_id=3
+[Sat Sep 25 18:12:09 2021] [::1]:50105 [302]: /view-post.php?post_id=3
+[Sat Sep 25 18:12:09 2021] [::1]:50106 [200]: /view-post.php?post_id=3
+[Sat Sep 25 18:12:12 2021] [::1]:50107 [302]: /view-post.php?post_id=3
+[Sat Sep 25 18:12:12 2021] [::1]:50108 [200]: /view-post.php?post_id=3
+[Sat Sep 25 18:12:14 2021] [::1]:50110 [200]: /index.php
+[Sat Sep 25 18:12:16 2021] [::1]:50111 [200]: /view-post.php?post_id=2 - Uncaught Error: Call to a member function format() on bool in /Users/khouripa/Documents/my_php/blog_site/lib/common.php:62
+Stack trace:
+#0 /Users/khouripa/Documents/my_php/blog_site/view-post.php(144): convertSQliteDate('2021-09-25')
+#1 {main}
+  thrown in /Users/khouripa/Documents/my_php/blog_site/lib/common.php on line 62
+[Sat Sep 25 18:16:50 2021] [::1]:50249 [200]: /index.php
+[Sat Sep 25 18:16:50 2021] [::1]:50250 [404]: /favicon.ico - No such file or directory
+[Sat Sep 25 18:16:51 2021] [::1]:50251 [200]: /view-post.php?post_id=2
+[Sat Sep 25 18:17:26 2021] [::1]:50253 [200]: /index.php
+[Sat Sep 25 18:17:28 2021] [::1]:50254 [200]: /view-post.php?post_id=2
+[Sat Sep 25 18:17:30 2021] [::1]:50255 [302]: /view-post.php?post_id=2
+[Sat Sep 25 18:17:30 2021] [::1]:50256 [200]: /view-post.php?post_id=2
+[Sat Sep 25 18:17:35 2021] [::1]:50258 [302]: /view-post.php?post_id=2
+[Sat Sep 25 18:17:35 2021] [::1]:50259 [200]: /view-post.php?post_id=2
+[Sat Sep 25 18:18:33 2021] [::1]:50262 [200]: /index.php
+[Sat Sep 25 18:18:35 2021] [::1]:50263 [200]: /view-post.php?post_id=2
+[Sat Sep 25 18:18:37 2021] [::1]:50265 [200]: /view-post.php?post_id=2
+[Sat Sep 25 18:21:24 2021] [::1]:50270 [200]: /index.php
+[Sat Sep 25 18:21:26 2021] [::1]:50271 [200]: /view-post.php?post_id=2
+[Sat Sep 25 18:21:28 2021] [::1]:50272 [200]: /view-post.php?post_id=2
+[Sat Sep 25 18:22:32 2021] [::1]:50277 [200]: /index.php
+[Sat Sep 25 18:22:34 2021] [::1]:50278 [200]: /view-post.php?post_id=2
+[Sat Sep 25 18:22:36 2021] [::1]:50279 [200]: /view-post.php?post_id=2
+[Sat Sep 25 18:28:17 2021] [::1]:50302 [200]: /index.php
+[Sat Sep 25 18:28:19 2021] [::1]:50303 [200]: /view-post.php?post_id=2
+[Sat Sep 25 18:28:21 2021] [::1]:50304 [200]: /view-post.php?post_id=2
+[Sat Sep 25 18:33:40 2021] [::1]:50397 [200]: /index.php
+[Sat Sep 25 18:33:41 2021] [::1]:50398 [200]: /view-post.php?post_id=2
+[Sat Sep 25 18:33:43 2021] [::1]:50399 [302]: /view-post.php?post_id=2
+[Sat Sep 25 18:33:43 2021] [::1]:50400 [200]: /view-post.php?post_id=2 - Uncaught Error: Call to a member function format() on bool in /Users/khouripa/Documents/my_php/blog_site/lib/common.php:62
+Stack trace:
+#0 /Users/khouripa/Documents/my_php/blog_site/view-post.php(148): convertSQliteDate('2021-09-25 06-0...')
+#1 {main}
+  thrown in /Users/khouripa/Documents/my_php/blog_site/lib/common.php on line 62
+[Sat Sep 25 18:36:28 2021] [::1]:50413 [200]: /index.php
+[Sat Sep 25 18:36:43 2021] [::1]:50417 [200]: /index.php
+[Sat Sep 25 18:36:45 2021] [::1]:50418 [200]: /view-post.php?post_id=2
+[Sat Sep 25 18:36:47 2021] [::1]:50420 [302]: /view-post.php?post_id=2
+[Sat Sep 25 18:36:47 2021] [::1]:50421 [200]: /view-post.php?post_id=2
+[Sat Sep 25 18:37:04 2021] [::1]:50425 [200]: /index.php
+[Sat Sep 25 18:37:06 2021] [::1]:50426 [200]: /view-post.php?post_id=2
+[Sat Sep 25 18:37:09 2021] [::1]:50428 [302]: /view-post.php?post_id=2
+[Sat Sep 25 18:37:09 2021] [::1]:50429 [200]: /view-post.php?post_id=2
+[Sat Sep 25 18:38:04 2021] [::1]:50434 [200]: /index.php
+[Sat Sep 25 18:38:06 2021] [::1]:50435 [200]: /view-post.php?post_id=2
+[Sat Sep 25 18:38:08 2021] [::1]:50436 [302]: /view-post.php?post_id=2
+[Sat Sep 25 18:38:08 2021] [::1]:50437 [200]: /view-post.php?post_id=2
+[Sat Sep 25 18:38:16 2021] [::1]:50440 [302]: /view-post.php?post_id=2
+[Sat Sep 25 18:38:16 2021] [::1]:50441 [200]: /view-post.php?post_id=2
+[Sat Sep 25 18:38:56 2021] [::1]:50444 [200]: /index.php
+[Sat Sep 25 18:38:59 2021] [::1]:50445 [200]: /view-post.php?post_id=1
+[Sat Sep 25 18:39:41 2021] [::1]:50451 [200]: /index.php
+[Sat Sep 25 18:39:46 2021] [::1]:50453 [200]: /view-post.php?post_id=1
+[Sat Sep 25 18:39:48 2021] [::1]:50455 [200]: /index.php
+[Sat Sep 25 18:39:49 2021] [::1]:50456 [200]: /view-post.php?post_id=3
+[Sat Sep 25 18:39:51 2021] [::1]:50457 [302]: /view-post.php?post_id=3
+[Sat Sep 25 18:39:51 2021] [::1]:50458 [200]: /view-post.php?post_id=3
+[Sat Sep 25 18:39:53 2021] [::1]:50460 [302]: /view-post.php?post_id=3
+[Sat Sep 25 18:39:53 2021] [::1]:50461 [200]: /view-post.php?post_id=3
+[Sat Sep 25 18:39:56 2021] [::1]:50463 [302]: /view-post.php?post_id=3
+[Sat Sep 25 18:39:56 2021] [::1]:50464 [200]: /view-post.php?post_id=3
+[Sat Sep 25 18:40:04 2021] [::1]:50466 [302]: /view-post.php?post_id=3
+[Sat Sep 25 18:40:04 2021] [::1]:50467 [200]: /view-post.php?post_id=3
+[Sat Sep 25 18:40:14 2021] [::1]:50469 [302]: /view-post.php?post_id=3
+[Sat Sep 25 18:40:14 2021] [::1]:50470 [200]: /view-post.php?post_id=3
+
