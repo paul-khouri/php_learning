@@ -50,19 +50,6 @@ function htmlEscape($html){
 }
 
 /**
- * converts unsafe text to HTML paragraphs using p tags
- * 
- * @param string $html
- * @return string
- */
-function convertNewLinesToParagraphs($text){
-
-    $escaped= htmlEscape($text);
-    return '<p>' . str_replace("\n", "</p><p>" , $escaped) . '</p>';
-
-}
-
-/**
  * Change date format
  * 
  * @param date $sqlDate
@@ -73,10 +60,7 @@ function convertSQliteDate($sqlDate){
     $date = DateTime::createFromFormat("Y-m-d H:i:s",$sqlDate);
 
     return $date -> format('d M Y, H:i');
-}
 
-function getSqlDateForNow(){
-    return date('Y-m-d H:i:s');
 }
 
 function redirectAndExit($script){

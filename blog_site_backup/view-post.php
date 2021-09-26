@@ -17,9 +17,8 @@ else{
 $pdo = getPDO();
 $row = getPostRow($pdo, $postId);
 //swap carriage returns for paragraph breaks
-// substituted with function
-//$bodyText =  htmlEscape($row['body'] ) ;
-//$paraText = str_replace("\n", "</p><p>", $bodyText);
+$bodyText =  htmlEscape($row['body'] ) ;
+$paraText = str_replace("\n", "</p><p>", $bodyText);
 
 if(!$row){
  
@@ -27,7 +26,7 @@ if(!$row){
   // error will be displayed at index
   redirectAndExit('index.php?not-found=1');
 }
-//-----------------------------------------------------------------------
+//-------------------------------
 // managing comment form arrival
 function addCommentToPost(PDO $pdo , $postId , array $commentData){
   //validation
@@ -48,7 +47,7 @@ if(!$errors){
   values('Paul', 'gog', 'hello' , datetime('now') , 2)
   ";
   */
-/*
+
   $test = array(
     'name' => 'paul',
     'website' => 'gogalong',
@@ -56,7 +55,6 @@ if(!$errors){
     'post_id' => 2,
     'created_at' => date('Y-d-m H:m:s'),
   );
-  */
 
 
   $stmt = $pdo -> prepare($sql);
@@ -64,7 +62,7 @@ if(!$errors){
     throw new Exception('Cannot prepare statement to insert comment');
   };
   //$result = $stmt -> execute();
-  $createdTimeStamp = getSqlDateForNow();
+  $createdTimeStamp = date('Y-m-d H:m:s');
   //$result = $stmt -> execute($test);
   
   $result = $stmt -> execute(
@@ -103,12 +101,6 @@ if($_POST){
   if(!$errors){
     redirectAndExit('view-post.php?post_id=' . $postId);
   }
-}else{
-  $commentData = array(
-      'name' => '',
-      'website' => '',
-      'text' => '',
-  );
 }
 
 ?>
@@ -135,8 +127,6 @@ if($_POST){
       <?php endif ?>
 
       <h2><?php echo $postId ?></h2>
-
-      <!-- print out blog entry -->
       <h2>
         <?php echo htmlEscape($row['title']) ?>
       </h2>
@@ -144,13 +134,10 @@ if($_POST){
       <?php echo $row['created_at'] ?>
     </div>
       <p>
-        <?php echo  convertNewLinesToParagraphs($row['body']) ?>
+        <?php echo  $paraText ?>
       </p>
     <h3> <?php echo countCommentsForPost($postId) ?> comments</h3>
     <?php foreach (getCommentsForPost($postId) as $comment): ?>
-
-      <!-- print out comments -->
-
       <?php // split up with horizontal rule ?>
       <hr/>
       <div class="comment">
@@ -160,12 +147,10 @@ if($_POST){
           <?php echo convertSQliteDate($comment['created_at']) ?>
         </div>
         <div class="comment-body">
-          <?php echo convertNewLinesToParagraphs($comment['text']) ?>
+          <?php echo htmlEscape($comment['text']) ?>
         </div>
       </div>
     <?php endforeach ?>
-
-    <!-- begin form -->
     <?php // rule off and separate page sections ?>
     <hr/>
     <?php // report any errors in a list ?>
@@ -187,20 +172,24 @@ if($_POST){
       text-align: right;
     }
   </style>
-
+  <?php
+  $name = "Harold";
+  $website = "http://google.com";
+  $comment = "I totally agree with you";
+  ?>
     <form method="post">
 <p>
   <label for="comment-name"> Name </label>
-  <input type="text" id="comment-name" name="comment-name" value="<?php echo htmlEscape($commentData['name']) ?>"  />
+  <input type="text" id="comment-name" name="comment-name" value="<?php echo $name ?>"  />
   <p> error statement </p>
 </p>
 <p>
   <label for="comment-website"> Website </label>
-  <input type="text" id="comment-website" name="comment-website" value="<?php echo htmlEscape($commentData['website']) ?>" />
+  <input type="text" id="comment-website" name="comment-website" value="<?php echo $website ?>" />
 </p>
 <p>
   <label for="comment-text"> Comment: </label>
-  <textarea id="comment-text" name="comment-text" rows="8" columns="70" ><?php echo htmlEscape($commentData['text']) ?></textarea>
+  <textarea id="comment-text" name="comment-text" rows="8" columns="70" > <?php echo $comment ?> </textarea>
 </p>
 <input type="submit" value="Submit Comment"/>
 
