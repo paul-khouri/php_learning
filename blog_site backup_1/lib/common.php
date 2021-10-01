@@ -140,12 +140,4 @@ function getCommentsForPost($postId){
 
 }
 
-function isLoggedIn(){
-    return isset($_SESSION['logged-in_username']);
-}
-
-function getAuthUser(){
-    return isLoggedIn() ? $_SESSION['logged-in_username'] : null;
-}
-
 // no closing tag

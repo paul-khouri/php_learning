@@ -3,7 +3,6 @@
 //Find the database
 require_once 'lib/common.php';
 require_once 'lib/view-post-common.php';
-session_start();
 // Get the post id
 if ( isset( $_GET['post_id'] ) )
 {

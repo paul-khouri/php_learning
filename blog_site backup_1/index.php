@@ -2,7 +2,6 @@
 //Get the PDO DSN string
 //Find the database
 require_once 'lib/common.php';
-session_start();
 
 //connect to the database , run a query, handle errors
 $pdo = getPDO();

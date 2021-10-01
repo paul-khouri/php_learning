@@ -88,11 +88,3 @@ values(
     'http://bing.com',
     "This is Alices's contribution"
 );
-
-create table user(
-    id integer primary key autoincrement not null,
-    username text not null,
-    password text not null,
-    created_at date not null,
-    is_enabled boolean not null default true
-);

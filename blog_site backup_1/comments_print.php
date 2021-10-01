@@ -27,9 +27,6 @@ function deleteRow(PDO $pdo, $ID, $tablename){
             case 'post':
                 $tbl = 'post';
                 break;
-            case 'user':
-                $tbl = 'user';
-                break;
             default:
                 throw new Exception('table name ' . $tablename . ' not in database');
         }
@@ -70,9 +67,6 @@ function selectAllFromTable(PDO $pdo , string $tablename){
                     break;
                 case 'post':
                     $tbl = 'post';
-                    break;
-                case 'user':
-                    $tbl = 'user';
                     break;
                 default:
                     throw new Exception('table name ' . $tablename . ' not in database');

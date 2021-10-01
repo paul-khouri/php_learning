@@ -1,6 +1,70 @@
 <?php
 require_once 'lib/common.php';
-require_once 'lib/install.php';
+//---------
+function installBlog(){
+
+    //Get the PDO DSN string
+$root = getRootPath();
+$database = getDatabasePath() ;
+
+
+$error = "";
+//avoid inadvertant resetting of the database (manual deletion required)
+if( is_readable($database) && filesize($database) >0)
+{
+    $error="A database is already present, please manually delete for fresh installation";
+    
+}
+
+
+
+if(!$error){
+    $createdOK = @touch($database);
+    if(!$createdOK){
+
+        $error = sprintf(
+            'Could not create data base at location \'%s\' ',dirname($database)
+        );
+
+    }
+}
+
+// database created
+// get instatantiation SQL commands
+if(!$error){
+    $sql = file_get_contents($root . '/data/init.sql');
+    if($sql === false){
+        $error = 'Cannot find SQL file';
+    }
+}
+
+// connect to database and try to run SQL commands
+if(!$error){
+    $pdo = getPDO();
+    $result = $pdo -> exec($sql);
+    if($result === false){
+        $error = "Could not not run SQL: " . print_r($pdo-> errorInfo(),true);
+    }
+}
+
+// count rows created if any
+$count = array();
+
+foreach(array('post', 'comment') as $tableName){
+    if(!$error){
+        $sql = "select count(*) as c from " . $tableName;
+        $stmt = $pdo -> query($sql);
+            if($stmt){
+                // store each count in an associative array
+                $count[$tableName] = $stmt -> fetchColumn();
+            }
+    }
+}
+
+
+
+return array($count,$error);
+}
 
 // store in session to survive redirect to self
 session_start();
@@ -9,49 +73,32 @@ session_start();
 //only run installer if responding to the form
 if($_POST){
     // run the install
-    $pdo =getPDO();
-    list($rowCounts, $error)=installBlog($pdo);
- 
-    $password = '';
-    if(!$error){
-        $username = 'admin';
-        list($password, $error) = createUser($pdo, $username);
-    }
-
-    $_SESSION['count'] = $rowCounts;
-    $_SESSION['error'] = $error;
-    $_SESSION['username'] = $username;
-    $_SESSION['password'] = $password;
-    $_SESSION['try-install'] = true;
- 
-
+    list($_SESSION['count'],$_SESSION['error'])=installBlog();
     // redirect from POST to GET
-    redirectAndExit('install.php');
-    
+    $host = $_SERVER['HTTP_HOST'];
+    $script = $_SERVER['REQUEST_URI'];
+    header('Location: http://' . $host . $script);
+    exit();
 }
 
 
 // see if just installed
 $attempted = false;
-if( isset( $_SESSION['try-install'] ) ){
+if($_SESSION){
     $attempted = true;
     $count = $_SESSION['count'];
     $error = $_SESSION['error'];
-    $username = $_SESSION['username'];
-    $password = $_SESSION['password'];
   
 
     //unset variables so only reported once
-    unset( $_SESSION['count']);
-    unset( $_SESSION['error']);
-    unset( $_SESSION['username']);
-    unset( $_SESSION['password']);
-    unset( $_SESSION['try-install']);
-
+    unset($_SESSION['count']);
+    unset( $SESSION['error']);
 
 }
 
-
+session_destroy();
+unset($_SESSION['count']);
+unset( $SESSION['error']);
 
 
 
@@ -97,18 +144,17 @@ if( isset( $_SESSION['try-install'] ) ){
     <?php else: ?>
         <div class="success box">
             The database and demo data was succefully created.
-            <?php //Report the counts for each table ?>
             <?php foreach (array('post', 'comment') as $tableName): ?>
                 <?php if (isset($count[$tableName])): ?>
                     <?php // prints the count ?>
                     <?php echo $count[$tableName] ?> new
                     <?php // prints the name of the thing ?>
                     <?php echo $tableName ?>s were created
+      
+
+
                 <?php endif ?>
             <?php endforeach ?>
-            <?php // Report new password ?>
-            The new ' <?php echo htmlEscape($username) ?> ' password 
-            is  <span style="font-size: 1.2em;"> <?php echo htmlEscape($password) ?> </span> (copy to clipboard)
             </div>
             <p>
             <a href="index.php">View the Blog</a>, or <a href="install.php">Install again</a>

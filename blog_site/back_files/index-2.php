@@ -1,11 +1,12 @@
 <?php
 //Get the PDO DSN string
 //Find the database
-require_once 'lib/common.php';
-session_start();
+$root = realpath(__DIR__);
+$database = $root . '/data/data.sqlite' ;
+$dsn = 'sqlite:' . $database;
 
 //connect to the database , run a query, handle errors
-$pdo = getPDO();
+$pdo = new PDO($dsn);
 $stmt = $pdo -> query(
   'select id, title, created_at, body
   from post
@@ -15,14 +16,6 @@ if($stmt === false){
   {
     throw new Exception("there was a problem running this query");
   }
-}
-
-$notFound = isset($_GET['not-found']);
-if ($notFound){
-  $notFoundVar = $notFound;
-}
-else{
-  $notFoundVar = "not not-found";
 }
 ?>
 
@@ -41,27 +34,18 @@ else{
 
 <body>
     <?php require 'templates/title.php' ?>
-    <h2>Not found variable : <?php echo $notFoundVar ?></h2>
-    <?php if ($notFound): ?>
-      <div style="border: 1px solid #ff6666; padding: 6px;"> Error: cannot find requested blog post </div>
-      <?php endif ?>
     <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
       <h2>
-        <?php echo htmlEscape($row['title']) ?>
+        <?php echo htmlspecialchars($row['title'],ENT_HTML5, 'UTF-8') ?>
       </h2>
       <div>
-        <?php echo convertSQliteDate($row['created_at']) ?>
-        ( <?php  echo countCommentsForPost($row['id'])  ?> comments )
+        <?php echo $row['created_at'] ?>
       </div>
       <p>
-        <?php echo htmlEscape($row['body'] )?>
+        <?php echo nl2br( htmlspecialchars($row['body'], ENT_HTML5, 'UTF-8') )?>
       </p>
       <p><a href="view-post.php?post_id=<?php echo $row['id'] ?>">Read More ...</a></p>
     <?php endwhile ?>
-<hr/>
-<p><a href="view-post.php?post_id=7">Test for request cannot be found</a></p>
-
-
 
 
 </body>
