@@ -11,11 +11,13 @@
 <a href='index.php'><h1>Paul's Blog </h1></a>
     <p>An collection of entries about different topics</p>
     <ul>
-        <li><a href="pathways.php">Pathways</a>
+        
         <li><a href="print_table.php?tablename=comment">Comments Print</a>
         <li><a href="print_table.php?tablename=post">Posts Print</a>
         <li><a href="print_table.php?tablename=user">User Print</a>
+        <li><a href="pathways.php">Pathways</a>
         <li><a href="study_page.php">Study Page</a>
+        <li><a href="db-meta.php">Database metadata</a>
     </ul>
     <hr>
     <?php 

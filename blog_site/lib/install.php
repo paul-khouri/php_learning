@@ -91,15 +91,16 @@ function createUser(PDO $pdo ,$username, $length =10){
 
     // insert credentials into database
     $sql = "
-    insert into user (username, password, created_at)
-    values(:username, :password, :created_at)
+    update user 
+    set password = :password, created_at = :created_at , is_enabled = 1
+    where username = :username
     ";
     $stmt = $pdo -> prepare($sql);
     if($stmt === false){
-        $error = "could not prepare user creation";
+        $error = "could not prepare user update";
     }
     if(!$error){
-//NSTJKXNGGV
+//NDDSFCDBWR
         $hash = password_hash($password , PASSWORD_DEFAULT);
         if($hash === false){
             $error = 'Password hashing failed';
@@ -112,7 +113,7 @@ function createUser(PDO $pdo ,$username, $length =10){
              )
         );
         if($result === false){
-            $error = 'Could not run user creation';
+            $error = 'Could not run user update';
         }
     }
     if($error){

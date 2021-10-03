@@ -2,6 +2,24 @@
 *Database creation script
 */
 
+/* enable foreign key constraint */
+pragma foreign_keys = on;
+
+drop table if exists user;
+
+create table user(
+    id integer primary key autoincrement not null,
+    username text not null,
+    password text not null,
+    created_at date not null,
+    is_enabled boolean not null default true
+);
+
+/* create user 1 , to be updated when initialisation (php) runs */
+insert into user( username , password, created_at , is_enabled)
+values('admin', 'unhashed password', datetime('now', '-3 months'), 0);
+
+
 drop table if exists post;
 
 create table post(
@@ -10,7 +28,8 @@ create table post(
     body text not null,
     user_id integer not null,
     created_at date not null,
-    updated_at date
+    updated_at date,
+    foreign key (user_id) references user(id)
 );
 
 insert into post(title, body, user_id, created_at)
@@ -42,6 +61,8 @@ values(
     1,
     datetime('now', '-19 days', '1200 minutes', '+10 seconds')
 );
+
+
 drop table if exists comment;
 
 create table comment(
@@ -50,7 +71,8 @@ create table comment(
     created_at date not null,
     name text not null,
     website text,
-    text text not null
+    text text not null,
+    foreign key (post_id) references post(id)
 );
 
 insert into comment(post_id, created_at, name, website, text)
@@ -89,10 +111,3 @@ values(
     "This is Alices's contribution"
 );
 
-create table user(
-    id integer primary key autoincrement not null,
-    username text not null,
-    password text not null,
-    created_at date not null,
-    is_enabled boolean not null default true
-);

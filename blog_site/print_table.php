@@ -35,7 +35,7 @@ function deleteRow(PDO $pdo, $ID, $tablename){
             default:
                 throw new Exception('table name ' . $tablename . ' not in database');
         }
-    $sql = "delete from comment where id= :Id";
+    $sql = "delete from $tbl where id= :Id";
     $stmt = $pdo -> prepare($sql);
     if($stmt === false){
         throw new Exception('Cannot prepare statement for deletion');

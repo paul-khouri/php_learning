@@ -1,4 +1,6 @@
 <?php
+require_once 'lib/common.php';
+
 $host = $_SERVER['HTTP_HOST'];
 $script = $_SERVER['REQUEST_URI'];
 $relativeUrl = $_SERVER['PHP_SELF'];

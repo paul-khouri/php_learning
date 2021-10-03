@@ -37,7 +37,13 @@ function getDsn()
  */
 function getPDO()
 {
-    return new PDO(getDsn());
+    $pdo = new PDO(getDsn());
+    // explicitly set foreign key constraints
+    $result = $pdo -> query('pragma foreign_keys = ON');
+    if($result === false){
+        throw new Exception(' Could not turn on foreign key constraints');
+    }
+    return $pdo;
 }
 /**
  * Escapes so text is safe to output
