@@ -84,46 +84,39 @@ if($_POST){
 
 ?>
 
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <title>Blog Application : <?php echo htmlspecialchars($row['title'],ENT_HTML5,'UTF-8') ?></title>
-  <meta name="description" content="A simple HTML5 Template for new projects.">
-  <meta name="author" content="SitePoint">
-</head>
+<?php require_once 'templates/boilerplate.php' ?>
 
 <body>
   <?php require 'templates/title.php' ?>
 
       <!-- print out blog entry -->
-    <h2>
-      <?php echo htmlEscape($row['title']) ?>
-    </h2>
-    <div>
-      <?php echo $row['created_at'] ?>
-    </div>
-    <p>
-      <?php echo  convertNewLinesToParagraphs($row['body']) ?>
-    </p>
-     <!-- print out comments -->
-    <h3> <?php echo countCommentsForPost($postId) ?> comments</h3>
-    <?php foreach (getCommentsForPost($postId) as $comment): ?>
-      <?php // split up with horizontal rule ?>
-      <hr/>
-      <div class="comment">
-        <div class="comment-meta">
-          Comment from
-          <?php echo htmlEscape($comment['name']) ?> on 
-          <?php echo convertSQliteDate($comment['created_at']) ?>
-        </div>
-        <div class="comment-body">
-          <?php echo convertNewLinesToParagraphs($comment['text']) ?>
-        </div>
+    <div class="post">
+      <h2>
+        <?php echo htmlEscape($row['title']) ?>
+      </h2>
+      <div class="date">
+        <?php echo $row['created_at'] ?>
       </div>
-    <?php endforeach ?>
+      <p>
+        <?php echo  convertNewLinesToParagraphs($row['body']) ?>
+      </p>
+    </div>
+     <!-- print out comments -->
+    <div class="comment-list">
+      <h3> <?php echo countCommentsForPost($pdo , $postId) ?> comments</h3>
+      <?php foreach (getCommentsForPost($pdo, $postId) as $comment): ?>
+        <div class="comment">
+          <div class="comment-meta">
+            Comment from
+            <?php echo htmlEscape($comment['name']) ?> on 
+            <?php echo convertSQliteDate($comment['created_at']) ?>
+          </div>
+          <div class="comment-body">
+            <?php echo convertNewLinesToParagraphs($comment['text']) ?>
+          </div>
+        </div>
+      <?php endforeach ?>
+    </div>
 
     <!-- begin form -->
 
@@ -131,7 +124,7 @@ if($_POST){
     <hr/>
     <?php // report any errors in a list ?>
     <?php if ($errors): ?>
-      <div style="border: 1px solid #ff6666; padding: 1em;">Errors
+      <div class="box error comment-margin">Errors
       <ul>
         <?php foreach ($errors as $error): ?>
         <li><?php echo $error ?></li>
@@ -140,16 +133,9 @@ if($_POST){
       </div>
     <?php endif ?>
     <h3> Add your comment </h3>
-    <style> 
-      label{
-        width:5em;
-        border: 1px solid red;
-        display: inline-block;
-        text-align: right;
-      }
-    </style>
+ 
 
-    <form method="post">
+    <form method="post" class="comment-form">
     <p>
       <label for="comment-name"> Name </label>
       <input type="text" id="comment-name" name="comment-name" value="<?php echo htmlEscape($commentData['name']) ?>"  />

@@ -102,7 +102,7 @@ function redirectAndExit($script){
  * @param integer $postId
  * @return integer
  */
-function countCommentsForPost($postId){
+function countCommentsForPost(PDO $pdo, $postId){
     $pdo = getPDO();
     $sql = "
     select count(*) c from comment
@@ -123,7 +123,7 @@ function countCommentsForPost($postId){
  * @param integer $postId
  * @return array
  */
-function getCommentsForPost($postId){
+function getCommentsForPost(PDO $pdo, $postId){
 
     $pdo = getPDO();
     $sql = "

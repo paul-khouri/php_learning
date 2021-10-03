@@ -1,10 +1,12 @@
 <?php
 require_once "lib/common.php";
 //-------------------------------------------------------------
-
+$title = '';
 if ( isset( $_GET['tablename'] ) )
 {
   $tablename = $_GET['tablename'];
+  $title = $tablename . ' table';
+ 
 }
 else{
   $tablename = null;
@@ -104,7 +106,7 @@ function selectAllFromTable(PDO $pdo , string $tablename){
 
 ?>
 <?php
-$title = 'Print all comments';
+
 require 'templates/boilerplate.php'
 ?>
 <body>
@@ -129,7 +131,7 @@ form, .feedback div{
     text-align: center;
 }
     </style>
-    <h2>Comments</h2>
+    <h2><?php echo $title ?></h2>
     <div class="feedback">
     <?php 
     if($postId){

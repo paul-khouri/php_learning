@@ -7,4 +7,5 @@
   <title><?=$title ?></title>
   <meta name="description" content="A simple HTML5 Template for new projects.">
   <meta name="author" content="SitePoint">
+  <link rel="stylesheet" type="text/css" href="assets/main.css" />
 </head>

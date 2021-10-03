@@ -51,42 +51,12 @@ if( isset( $_SESSION['try-install'] ) ){
 
 }
 
-
-
-
-
 //---------
 
-
 ?>
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Database Install</title>
-  <meta name="description" content="A simple HTML5 Template for new projects.">
-  <meta name="author" content="SitePoint">
-<style>
-    .box{
-        border: 1px dotted silver;
-        border-radius: 5px;
-        padding: 4px;
-    }
-    .success{
-        background-color: #88ff88; 
-
-    }
-    .error{
-        background-color:  #ff6666;
-       
-    }
-
-
-</style>
-
-</head>
+<?php require_once 'templates/boilerplate.php' ?>
+  
 <body>
 <?php if ($attempted): ?>
 
@@ -108,7 +78,7 @@ if( isset( $_SESSION['try-install'] ) ){
             <?php endforeach ?>
             <?php // Report new password ?>
             The new ' <?php echo htmlEscape($username) ?> ' password 
-            is  <span style="font-size: 1.2em;"> <?php echo htmlEscape($password) ?> </span> (copy to clipboard)
+            is  <span class="install-password"> <?php echo htmlEscape($password) ?> </span> (copy to clipboard)
             </div>
             <p>
             <a href="index.php">View the Blog</a>, or <a href="install.php">Install again</a>

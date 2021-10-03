@@ -55,7 +55,7 @@ require 'templates/boilerplate.php' ?>
 
 <?php // If we have a username and have not redirected , then something went wrong ?>
 <?php if ($username): ?>
-    <div style = "border: 1px solid #ff6666; padding: 6px;">
+    <div class="box error">
     The username or password is incorrect , please try again
 </div>
     <?php endif ?>

@@ -1,4 +1,5 @@
 <?php 
+require_once 'lib/common.php';
 session_start();
 $_SESSION['initial'] = "Initial variable";
 $_SESSION['second'] = "Second variable";
