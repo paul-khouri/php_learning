@@ -23,43 +23,7 @@ if(!$row){
   redirectAndExit('index.php?not-found=1');
 }
 //-----------------------------------------------------------------------
-// managing comment form arrival
-function addCommentToPost(PDO $pdo , $postId , array $commentData){
-  //validation
-  $errors=array();
-  if(empty($commentData['name'])){
-    $errors['name'] = "A name is required";
-  }
-  if(empty($commentData['text'])){
-    $errors['text'] = "A comment is required";
-  }
-  if(!$errors){
-  // insert statement with parameters
-  $sql = "insert into comment(name, website, text, created_at,  post_id)
-  values(:name, :website, :text, :created_at , :post_id)
-  ";
-  
-  $stmt = $pdo -> prepare($sql);
-    if($stmt === false){
-      throw new Exception('Cannot prepare statement to insert comment');
-    };
-    $createdTimeStamp = getSqlDateForNow();
 
-    $result = $stmt -> execute(
-      array_merge($commentData, array('post_id' => $postId, 'created_at' => $createdTimeStamp,) )
-    );
-  
-    if($result === false){
-      // @todo database level error for user
-      //throw new Exception('Cannot prepare statement to insert comment');
-      $errorInfo = $stmt -> errorInfo();
-      if($errorInfo){
-        $errors[] = $errorInfo[2];
-      }
-    }
-  }
-  return $errors;
-  }
 
 $errors = null;
 if($_POST){
@@ -84,7 +48,10 @@ if($_POST){
 
 ?>
 
-<?php require_once 'templates/boilerplate.php' ?>
+<?php 
+$page_title = 'View Post Page';
+require_once 'templates/boilerplate.php';
+?>
 
 <body>
   <?php require 'templates/title.php' ?>
@@ -135,7 +102,7 @@ if($_POST){
     <h3> Add your comment </h3>
  
 
-    <form method="post" class="comment-form">
+    <form method="post" class="comment-form user-form">
     <p>
       <label for="comment-name"> Name </label>
       <input type="text" id="comment-name" name="comment-name" value="<?php echo htmlEscape($commentData['name']) ?>"  />

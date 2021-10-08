@@ -1,5 +1,6 @@
 <?php
 require_once 'lib/common.php';
+session_start();
 
 $host = $_SERVER['HTTP_HOST'];
 $script = $_SERVER['REQUEST_URI'];
@@ -15,7 +16,7 @@ $redirect = 'Location: http://' . $fullURLHost . '/';
 ?>
 
 <?php 
-$title = 'Pathways Page';
+$page_title = 'Pathways Page';
 require 'templates/boilerplate.php' ?>
 
 
@@ -34,6 +35,12 @@ require 'templates/boilerplate.php' ?>
         echo "<br/>";
     }
     ?>
+<hr/>
+<?php
+echo '<p>' . $_SERVER['HTTP_USER_AGENT'] . '</p>';
+
+
+?>
 
 
 

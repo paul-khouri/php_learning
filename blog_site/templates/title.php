@@ -1,7 +1,8 @@
 <div class="top-menu">
     <div class="menu-options">
         <?php if(isLoggedIn()): ?>
-            Hello <?php echo htmlEscape(getAuthUser()) ?>.
+            <a href='edit-post.php'>Edit Post</a>
+            Hello <?php echo htmlEscape(getAuthUser()) ?> , your user id is:  <?php echo htmlEscape( getAuthUserId( getPDO()) ) ?>.
             <a href="log-out.php">Log Out</a>
             <?php else: ?>
             <a href="log-in.php">Log in</a>

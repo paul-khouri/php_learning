@@ -23,7 +23,7 @@ values('admin', 'unhashed password', datetime('now', '-3 months'), 0);
 drop table if exists post;
 
 create table post(
-    id integer primary key not null,
+    id integer primary key autoincrement not null,
     title text not null,
     body text not null,
     user_id integer not null,
@@ -66,7 +66,7 @@ values(
 drop table if exists comment;
 
 create table comment(
-    id integer primary key not null,
+    id integer primary key autoincrement not null,
     post_id integer not null,
     created_at date not null,
     name text not null,

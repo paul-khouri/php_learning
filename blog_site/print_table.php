@@ -1,5 +1,6 @@
 <?php
 require_once "lib/common.php";
+session_start();
 //-------------------------------------------------------------
 $title = '';
 if ( isset( $_GET['tablename'] ) )
@@ -106,7 +107,7 @@ function selectAllFromTable(PDO $pdo , string $tablename){
 
 ?>
 <?php
-
+$page_title = "Print Table Data";
 require 'templates/boilerplate.php'
 ?>
 <body>

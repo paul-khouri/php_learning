@@ -4,7 +4,7 @@ session_start();
 $_SESSION['initial'] = "Initial variable";
 $_SESSION['second'] = "Second variable";
 
-$title = 'Study Page';
+$page_title = 'Study Page';
 require 'templates/boilerplate.php' ?>
 <style>
 table{
@@ -23,7 +23,9 @@ th , td{
 </style>
 
 <body>
-<?php require 'templates/title.php' ?>
+<?php 
+
+require 'templates/title.php' ?>
 
 <?php 
 $password = 'A';

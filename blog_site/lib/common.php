@@ -88,7 +88,13 @@ function convertSQliteDate($sqlDate){
 function getSqlDateForNow(){
     return date('Y-m-d H:i:s');
 }
-
+/**
+ * redirect to another page
+ * 
+ * @param string $script page_filename.php
+ * 
+ * @return exit()
+ */
 function redirectAndExit($script){
     // get domain relative URL and extract folder
     $relativeUrl = $_SERVER['PHP_SELF'];
@@ -152,6 +158,25 @@ function isLoggedIn(){
 
 function getAuthUser(){
     return isLoggedIn() ? $_SESSION['logged-in_username'] : null;
+}
+
+function getAuthUserId(PDO $pdo){
+
+    if(!isLoggedIn()){
+        return null;
+    }
+
+    $sql = "
+    select id
+    from user
+    where username = :username
+    ";
+    $stmt = $pdo -> prepare($sql);
+    $stmt -> execute(
+        array( 'username' => getAuthUser(), )
+    );
+    
+    return $stmt->fetchColumn();
 }
 
 // no closing tag

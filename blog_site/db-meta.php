@@ -17,7 +17,7 @@ if($stmt === false){
   }
 
 
-$title = 'Table metadata';
+$page_title = 'Table metadata';
 require 'templates/boilerplate.php';
 ?>
 
