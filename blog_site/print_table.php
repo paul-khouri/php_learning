@@ -36,7 +36,12 @@ function deleteRow(PDO $pdo, $ID, $tablename){
             default:
                 throw new Exception('table name ' . $tablename . ' not in database');
         }
+    if($tbl === 'post'){
+        $sql = " delete from $tbl where id = :Id";
+    }
+    else{
     $sql = "delete from $tbl where id= :Id";
+    }
     $stmt = $pdo -> prepare($sql);
     if($stmt === false){
         throw new Exception('Cannot prepare statement for deletion');

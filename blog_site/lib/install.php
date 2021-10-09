@@ -100,7 +100,7 @@ function createUser(PDO $pdo ,$username, $length =10){
         $error = "could not prepare user update";
     }
     if(!$error){
-//VYHIDMJBBK
+//AOERFJYBEW
         $hash = password_hash($password , PASSWORD_DEFAULT);
         if($hash === false){
             $error = 'Password hashing failed';

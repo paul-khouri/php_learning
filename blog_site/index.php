@@ -5,16 +5,7 @@ session_start();
 
 //connect to the database , run a query, handle errors
 $pdo = getPDO();
-$stmt = $pdo -> query(
-  'select id, title, created_at, body
-  from post
-  order by created_at desc'
-);
-if($stmt === false){
-  {
-    throw new Exception("there was a problem running this query");
-  }
-}
+$posts = getAllPosts($pdo);
 
 $notFound = isset($_GET['not-found']);
 if ($notFound){
@@ -39,28 +30,28 @@ require_once 'templates/boilerplate.php' ?>
       <?php endif ?>
 
       <div class="post-list">
-        <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
+        <?php foreach ($posts as $post): ?>
           <div class="post-synopsis">
               <h2>
-                <?php echo htmlEscape($row['title']) ?>
+                <?php echo htmlEscape($post['title']) ?>
               </h2>
               <div class="meta">
-                <?php echo convertSQliteDate($row['created_at']) ?>
-                ( <?php  echo countCommentsForPost($pdo , $row['id'])  ?> comments )
+                <?php echo convertSQliteDate($post['created_at']) ?>
+                ( <?php  echo countCommentsForPost($pdo , $post['id'])  ?> comments )
               </div>
               <p>
-                <?php echo htmlEscape($row['body'] )?>
+                <?php echo htmlEscape($post['body'] )?>
               </p>
               <div class="post-controls">
-                <p><a href="view-post.php?post_id=<?php echo $row['id'] ?>">Read More ...</a>
+                <p><a href="view-post.php?post_id=<?php echo $post['id'] ?>">Read More ...</a>
                 <?php if(isLoggedIn()): ?>
-                  <p><a href="edit-post.php?post_id=<?php echo $row['id'] ?>">Edit Post ...</a>
+                  <p><a href="edit-post.php?post_id=<?php echo $post['id'] ?>">Edit Post ...</a>
                 <?php endif ?>
               
               </p>
               </div>
           </div>
-      <?php endwhile ?>
+      <?php endforeach ?>
     </div>
 <hr/>
 <p><a href="view-post.php?post_id=7">Test for request cannot be found</a></p>

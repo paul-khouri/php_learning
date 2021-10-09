@@ -77,6 +77,9 @@ require_once 'templates/boilerplate.php';
             Comment from
             <?php echo htmlEscape($comment['name']) ?> on 
             <?php echo convertSQliteDate($comment['created_at']) ?>
+            <?php if(isLoggedIn()): ?>
+              <input type="submit" name="delete-comment[<?php echo $comment['id'] ?>]" value="Delete" />
+              <?php endif ?>
           </div>
           <div class="comment-body">
             <?php echo convertNewLinesToParagraphs($comment['text']) ?>

@@ -151,6 +151,28 @@ function getCommentsForPost(PDO $pdo, $postId){
     return $stmt -> fetchAll(PDO::FETCH_ASSOC);
 
 }
+/**
+ * Gets a list of posts in reverse order
+ * 
+ * @param PDO $pdo
+ * @return array
+ */
+function getAllPosts(PDO $pdo){
+    $stmt = $pdo -> query(
+        'select id, title, created_at, body
+        from post
+        order by created_at desc'
+      );
+      if($stmt === false){
+        {
+          throw new Exception("there was a problem running this query");
+        }
+      }
+
+      return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+}
 
 function isLoggedIn(){
     return isset($_SESSION['logged-in_username']);
