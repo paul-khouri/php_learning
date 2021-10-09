@@ -26,25 +26,45 @@ if(!$row){
 
 
 $errors = null;
-if($_POST){
-  $postData = $_POST;
-  $commentData = array(
-    'name' => $_POST['comment-name'],
-    'website' => $_POST['comment-website'],
-    'text' => $_POST['comment-text'],
-  );
-  $errors = addCommentToPost($pdo, $postId, $commentData);
-    //if no validation errors
-  if(!$errors){
-    redirectAndExit('view-post.php?post_id=' . $postId);
+  if($_POST){
+    $postData = $_POST;
+    switch($_GET['action']){
+
+      case 'add-comment': 
+
+        $commentData = array(
+          'name' => $_POST['comment-name'],
+          'website' => $_POST['comment-website'],
+          'text' => $_POST['comment-text'],
+        );
+        $errors = addCommentToPost($pdo, $postId, $commentData);
+          //if no validation errors
+        if(!$errors){
+          redirectAndExit('view-post.php?post_id=' . $postId);
+        }
+
+        break;
+      case 'delete-comment':
+        if(isLoggedIn()){
+          $deleteResponse = $_POST['delete-comment'];
+          $keys = array_keys($deleteResponse);
+          $deleteCommentId = $keys[0];
+          deleteComment($pdo,$postId , $deleteCommentId);
+          redirectAndExit('view-post.php?post_id=' . $postId);
+        }
+
+        break;
+
+
+    }
+
+    }else{
+      $commentData = array(
+          'name' => '',
+          'website' => '',
+          'text' => '',
+      );
   }
-}else{
-  $commentData = array(
-      'name' => '',
-      'website' => '',
-      'text' => '',
-  );
-}
 
 ?>
 
@@ -55,6 +75,11 @@ require_once 'templates/boilerplate.php';
 
 <body>
   <?php require 'templates/title.php' ?>
+  <?php
+  if($postId !== 0){
+    echo "<h1>" . $_GET['action'] . "</h1>";
+  }
+  ?>
 
       <!-- print out blog entry -->
     <div class="post">
@@ -69,7 +94,10 @@ require_once 'templates/boilerplate.php';
       </p>
     </div>
      <!-- print out comments -->
-    <div class="comment-list">
+    <form 
+    action="view-post.php?action=delete-comment&amp;post_id=<?php echo $postId ?>&amp;"
+    method="post"
+    class="comment-list">
       <h3> <?php echo countCommentsForPost($pdo , $postId) ?> comments</h3>
       <?php foreach (getCommentsForPost($pdo, $postId) as $comment): ?>
         <div class="comment">
@@ -86,7 +114,7 @@ require_once 'templates/boilerplate.php';
           </div>
         </div>
       <?php endforeach ?>
-    </div>
+            </form>
 
     <!-- begin form -->
 
@@ -105,7 +133,10 @@ require_once 'templates/boilerplate.php';
     <h3> Add your comment </h3>
  
 
-    <form method="post" class="comment-form user-form">
+    <form 
+    action="view-post.php?action=add-comment&amp;post_id=<?php echo $postId ?>"
+    method="post" 
+    class="comment-form user-form">
     <p>
       <label for="comment-name"> Name </label>
       <input type="text" id="comment-name" name="comment-name" value="<?php echo htmlEscape($commentData['name']) ?>"  />

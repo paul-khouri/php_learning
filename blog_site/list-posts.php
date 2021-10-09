@@ -18,14 +18,21 @@ $posts = getAllPosts($pdo);
  * @throws Exception
  */
 function deletePost(PDO $pdo, $postId){
-    $sql = "delete from post where id=:id";
-    $stmt = $pdo -> prepare($sql);
-    if($stmt === false){
-        throw new Exception("Problem preparing delete query");
+    $sqls = array(
+        "delete from comment where post_id=:id",
+        "delete from post where id=:id");
+    foreach($sqls as $sql){
+        $stmt = $pdo -> prepare($sql);
+        if($stmt === false){
+            throw new Exception("Problem preparing delete query");
+        }
+        $result = $stmt -> execute(
+            array('id' => $postId,)
+        );
+        if($result === false){
+            break;
+        }
     }
-    $result = $stmt -> execute(
-        array('id' => $postId,)
-    );
 
     return $result !== false; 
 
@@ -73,6 +80,7 @@ require_once 'templates/boilerplate.php' ?>
                 <tr>
                     <td> <?php echo htmlEscape($post['title']) ?> </td>
                     <td> <?php echo convertSQliteDate($post['created_at']) ?></td>
+                    <td> <?php echo $post['comment_count'] ?></td>
                     <td><a href="edit-post.php?post_id=<?php echo $post['id'] ?>">Edit</a></td>
                     <td><input type="submit" name="delete-post[ <?php echo $post['id'] ?> ]" value="Delete" /></td>
                 </tr>

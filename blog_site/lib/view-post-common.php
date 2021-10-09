@@ -81,3 +81,30 @@ function addCommentToPost(PDO $pdo , $postId , array $commentData){
     }
     return $errors;
 }
+
+/**
+ * Delete specified commment on a specified post
+ * 
+ * @param PDO $pdo
+ * @param integer $postId
+ * @param integer $commentId
+ * @return boolean true if completed succesfully
+ * @throws Exception
+ */
+function deleteComment(PDO $pdo , $postId , $commentId){
+  $sql="
+  delete from comment 
+  where post_id =:post_id and id=:comment_id";
+
+  $stmt = $pdo -> prepare($sql);
+  if($stmt === false){
+    throw new Exception("Problem preparing delete query");
+  }
+
+  $result = $stmt -> execute(
+      array('post_id' => $postId, 'comment_id' => $commentId,)
+    );
+
+  return $result !== false;
+
+}
