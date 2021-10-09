@@ -1,0 +1,89 @@
+Last login: Sat Sep 25 16:43:55 on ttys000
+khouripa@localadmins-MBP ~ % cd Documents/my_php/blog_site
+khouripa@localadmins-MBP blog_site % ls
+data		index_1.php	install-2.php	pathways.php	view-post-2.php
+index-2.php	info.php	install.php	templates	view-post.php
+index.php	install-1.php	lib		view-post-1.php
+khouripa@localadmins-MBP blog_site % cd data
+khouripa@localadmins-MBP data % ls
+data.sqlite	init-1.sql	init.sql
+khouripa@localadmins-MBP data %            
+khouripa@localadmins-MBP data % sqlite3
+SQLite version 3.32.3 2020-06-18 14:16:19
+Enter ".help" for usage hints.
+Connected to a transient in-memory database.
+Use ".open FILENAME" to reopen on a persistent database.
+sqlite> .open data.sqlite
+sqlite> .tables
+comment  post   
+sqlite> .schema comment
+CREATE TABLE comment(
+    id integer primary key not null,
+    post_id integer not null,
+    created_at date not null,
+    name text not null,
+    website text,
+    text text not null
+);
+sqlite> insert into comment(poset_id, created_at, name, website, text)
+   ...>    ...> insert into comment(poset_id, created_at, name, website, text;
+Error: near "insert": syntax error
+sqlite> insert into comment(post_id, created_at, name, website, text);
+Error: near ";": syntax error
+sqlite> insert into comment(post_id, created_at, name, website, text)
+   ...> values(1, date('now'), "paul", "gog", "hello");
+sqlite> select * from comment
+   ...> ;
+1|1|2021-09-11 19:16:11|Jimmy|http://google.com|This is Jimmy's contribution
+2|1|2021-09-11 20:36:12|Jane|http://msn.com|This is Jane's contribution
+3|1|2021-09-12 06:26:13|Johnny|http://yahoo.com|This is Johnny's contribution
+4|1|2021-09-13 11:26:14|Alice|http://bing.com|This is Alices's contribution
+5|1|2021-09-25|paul|gog|hello
+sqlite> select * from comment
+   ...> ;
+1|1|2021-09-11 19:16:11|Jimmy|http://google.com|This is Jimmy's contribution
+2|1|2021-09-11 20:36:12|Jane|http://msn.com|This is Jane's contribution
+3|1|2021-09-12 06:26:13|Johnny|http://yahoo.com|This is Johnny's contribution
+4|1|2021-09-13 11:26:14|Alice|http://bing.com|This is Alices's contribution
+5|1|2021-09-25|paul|gog|hello
+6|2|2021-09-25|Paul|gog|hello
+7|2|2021-09-25|Paul|gog|hello
+8|2|2021-09-25|Paul|gog|hello
+sqlite> delete from comment where id=5
+   ...> ;
+sqlite> select* from comment
+   ...> ;
+1|1|2021-09-11 19:16:11|Jimmy|http://google.com|This is Jimmy's contribution
+2|1|2021-09-11 20:36:12|Jane|http://msn.com|This is Jane's contribution
+3|1|2021-09-12 06:26:13|Johnny|http://yahoo.com|This is Johnny's contribution
+4|1|2021-09-13 11:26:14|Alice|http://bing.com|This is Alices's contribution
+6|2|2021-09-25|Paul|gog|hello
+7|2|2021-09-25|Paul|gog|hello
+8|2|2021-09-25|Paul|gog|hello
+sqlite> delete from comment where id>5;
+sqlite> select * from comment
+   ...> ;
+1|1|2021-09-11 19:16:11|Jimmy|http://google.com|This is Jimmy's contribution
+2|1|2021-09-11 20:36:12|Jane|http://msn.com|This is Jane's contribution
+3|1|2021-09-12 06:26:13|Johnny|http://yahoo.com|This is Johnny's contribution
+4|1|2021-09-13 11:26:14|Alice|http://bing.com|This is Alices's contribution
+sqlite> select * from comment
+   ...> ;
+1|1|2021-09-11 19:16:11|Jimmy|http://google.com|This is Jimmy's contribution
+2|1|2021-09-11 20:36:12|Jane|http://msn.com|This is Jane's contribution
+3|1|2021-09-12 06:26:13|Johnny|http://yahoo.com|This is Johnny's contribution
+4|1|2021-09-13 11:26:14|Alice|http://bing.com|This is Alices's contribution
+5|2|2021-09-25 06:17:30|Paul|gog|hello
+6|2|2021-09-25 06:17:35|Paul|gog|hello
+7|2|2021-09-25 06-09-43|paul|gog|hello
+sqlite> delete from comment where id>6;
+sqlite> select * from comment
+   ...> ;
+1|1|2021-09-11 19:16:11|Jimmy|http://google.com|This is Jimmy's contribution
+2|1|2021-09-11 20:36:12|Jane|http://msn.com|This is Jane's contribution
+3|1|2021-09-12 06:26:13|Johnny|http://yahoo.com|This is Johnny's contribution
+4|1|2021-09-13 11:26:14|Alice|http://bing.com|This is Alices's contribution
+5|2|2021-09-25 06:17:30|Paul|gog|hello
+6|2|2021-09-25 06:17:35|Paul|gog|hello
+sqlite> .exit
+khouripa@localadmins-MBP data % 
