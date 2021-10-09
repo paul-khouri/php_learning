@@ -41,9 +41,10 @@ function deleteRow(PDO $pdo, $ID, $tablename){
     if($stmt === false){
         throw new Exception('Cannot prepare statement for deletion');
       };
-    $stmt -> execute(array('Id' => $ID,));
-    if($stmt === false){
-        throw new Exception('Cannot execute deletion');
+    $result = $stmt -> execute(array('Id' => $ID,));
+    if($result === false){
+        //throw new Exception('Cannot execute deletion');
+        $errors = "Deletion could not be executed (Pragma error ?)";
       };
     return $errors;
 
@@ -58,6 +59,8 @@ if($_POST){
     $errors = deleteRow($pdo, $postId, $tablename);
     if(!$errors){
         $deletionResponse = 'The row with id ' . $postId . ' has been deleted';
+    }else{
+        $deletionResponse = $errors;
     }
 
 }

@@ -34,7 +34,7 @@ session_start();
 if($_POST){
    
     $pdo=getPDO();
-    // redirect only if passwrod and name is correct 
+    // redirect only if password and name is correct 
     
     $username = $_POST['username'];
     $ok = tryLogin($pdo , $username, $_POST['password']);

@@ -36,9 +36,15 @@ function getPostRow(PDO $pdo, $postId){
 
 }
 
-
-
-// managing comment form arrival
+/**
+ * Add a comment to a post.
+ * 
+ * @param PDO $pdo
+ * @param integer $postId
+ * @param array $commentData
+ * @throws Exception
+ * @return array $errors
+ */
 function addCommentToPost(PDO $pdo , $postId , array $commentData){
     //validation
     $errors=array();
@@ -49,10 +55,10 @@ function addCommentToPost(PDO $pdo , $postId , array $commentData){
       $errors['text'] = "A comment is required";
     }
     if(!$errors){
-    // insert statement with parameters
-    $sql = "insert into comment(name, website, text, created_at,  post_id)
-    values(:name, :website, :text, :created_at , :post_id)
-    ";
+      // insert statement with parameters
+      $sql = "insert into comment(name, website, text, created_at,  post_id)
+      values(:name, :website, :text, :created_at , :post_id)
+      ";
     
     $stmt = $pdo -> prepare($sql);
       if($stmt === false){
@@ -68,10 +74,10 @@ function addCommentToPost(PDO $pdo , $postId , array $commentData){
         // @todo database level error for user
         //throw new Exception('Cannot prepare statement to insert comment');
         $errorInfo = $stmt -> errorInfo();
-        if($errorInfo){
-          $errors[] = $errorInfo[2];
-        }
+          if($errorInfo){
+            $errors[] = $errorInfo[2];
+          }
       }
     }
     return $errors;
-    }
+}

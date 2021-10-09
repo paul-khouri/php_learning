@@ -27,7 +27,9 @@ else{
 
 
 
-<?php require_once 'templates/boilerplate.php' ?>
+<?php 
+$page_title = "Home Page";
+require_once 'templates/boilerplate.php' ?>
 
 <body>
     <?php require 'templates/title.php' ?>
@@ -49,8 +51,13 @@ else{
               <p>
                 <?php echo htmlEscape($row['body'] )?>
               </p>
-              <div class="read-more">
-                <p><a href="view-post.php?post_id=<?php echo $row['id'] ?>">Read More ...</a></p>
+              <div class="post-controls">
+                <p><a href="view-post.php?post_id=<?php echo $row['id'] ?>">Read More ...</a>
+                <?php if(isLoggedIn()): ?>
+                  <p><a href="edit-post.php?post_id=<?php echo $row['id'] ?>">Edit Post ...</a>
+                <?php endif ?>
+              
+              </p>
               </div>
           </div>
       <?php endwhile ?>

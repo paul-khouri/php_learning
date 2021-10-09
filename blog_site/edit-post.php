@@ -12,49 +12,7 @@ $title = '';
 $body = '';
 $pdo = getPDO();
 
-function addPost(PDO $pdo , $title , $body , $userId){
-    //prepare insert query
-    $sql = "insert into post(title, body, user_id , created_at)
-    values(:title, :body , :user_id , :created_at) ";
-    $stmt = $pdo -> prepare($sql);
-    if($stmt === false){
-        throw new Exception(" Could not prepare post insert query");
-    }
-    $result = $stmt -> execute(
-        array('title' => $title, 'body' => $body , 'user_id' => $userId, 'created_at' => getSqlDateForNow(),)
-    );
-    if($result === false){
-        throw new Exception("Could not execute post query");
-    }
 
-    return $pdo -> lastInsertId();
-}
-
-function editPost(PDO $pdo , $title , $body , $postId){
-    // prepare insert query
-    $sql="update 
-    post
-    set 
-    title =:title,
-    body=:body
-    where
-    id = :post_id";
-
-    $stmt = $pdo -> prepare($sql);
-    if($stmt === false){
-        throw new Exception(" Could not prepare post update query");
-    }
-
-    $result = $stmt -> execute(
-        array('title' => $title, 'body' => $body , 'post_id' => $postId,)
-    );
-    if($result === false){
-        throw new Exception("Could not execute post update query");
-    }
-
-    return true;
-
-}
 $postId = null;
 if(isset($_GET['post_id'])){
     $post = getPostRow($pdo, $_GET['post_id']);
@@ -92,7 +50,7 @@ if($_POST){
             if($postId === false){
                 $errors[] = "Post operation failed";
             }
-            
+
         }
     }
 
@@ -110,6 +68,14 @@ require 'templates/boilerplate.php'
 
 <body>
 <?php require 'templates/title.php' ?>
+
+<?php if(isset($_GET['post_id'])): ?>
+    <h1>Edit Post</h1>
+<?php else: ?>
+    <h1>New Post</h1>
+<?php endif ?>
+
+
 <?php if($errors): ?>
     <div class="error box">
     <ul>
@@ -131,6 +97,7 @@ require 'templates/boilerplate.php'
     </div>
     <div>
         <input type="submit" value="Save Post" />
+        <a href="index.php"> Cancel </a>
     </div>
 </form> 
 
